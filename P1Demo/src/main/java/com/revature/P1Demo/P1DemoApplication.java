@@ -8,6 +8,9 @@ public class P1DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(P1DemoApplication.class, args);
+
+		System.out.println("Welcome to the Team and Player Management System!");
+
 	}
 
 }
