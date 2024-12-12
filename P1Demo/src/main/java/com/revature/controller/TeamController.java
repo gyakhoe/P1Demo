@@ -43,6 +43,8 @@ public class TeamController {
     // Any get request ending in /teams/location/{location}
     @GetMapping("/location/{location}")
     public ResponseEntity<List<Team>> getAllTeams(@PathVariable String location) {
+        final var teams = teamService.getAllTeams(location);
+
         return ResponseEntity.ok(teamService.getAllTeams(location));
     }
 
