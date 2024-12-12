@@ -39,6 +39,13 @@ public class TeamController {
         return ResponseEntity.ok(teamService.getAllTeams());
     }
 
+    // Select all teams by location
+    // Any get request ending in /teams/location/{location}
+    @GetMapping("/location/{location}")
+    public ResponseEntity<List<Team>> getAllTeams(@PathVariable String location) {
+        return ResponseEntity.ok(teamService.getAllTeams(location));
+    }
+
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException e) {

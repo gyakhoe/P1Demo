@@ -39,8 +39,20 @@ public class TeamService {
     }
 
     public List<Team> getAllTeams() {
-
-
         return teamRepository.findAll();
+    }
+
+    // This method will get all teams by location
+    public List<Team> getAllTeams(String location) {
+        // make sure location is valid
+        if(location == null || location.isBlank()) {
+            throw  new IllegalArgumentException("Location can't be blank or null");
+        }
+
+        // attempt to get list of teams
+        List<Team> teams = teamRepository.findByTeamLocation(location);
+
+        // throw an exception if the returned list is empty
+        return teams;
     }
 }
