@@ -1,7 +1,11 @@
 package com.revature.services;
 
 import com.revature.model.Team;
+import com.revature.repository.TeamRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /*
  * The service layer is where we have our business logic
@@ -11,6 +15,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TeamService {
+
+    private final TeamRepository teamRepository;
+
+    @Autowired
+    public TeamService(TeamRepository teamRepository) {
+        this.teamRepository = teamRepository;
+    }
 
     // This method will insert new Teams into the DB once they have been validated
     public Team insertTeam(Team team) {
@@ -23,9 +34,13 @@ public class TeamService {
         }
 
         // Everything is good
+        Team insertedTeam = teamRepository.save(team);
+        return insertedTeam;
+    }
 
-        return team;
+    public List<Team> getAllTeams() {
 
 
+        return teamRepository.findAll();
     }
 }

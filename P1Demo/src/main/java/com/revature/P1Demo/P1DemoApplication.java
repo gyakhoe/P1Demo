@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan("com.revature.model")
 @ComponentScan("com.revature") // this tells Spring to look in com.revature for beans (any stereotype annotations)
+@EnableJpaRepositories("com.revature.repository") // This tells the Spring to look for JPA Repository
 public class P1DemoApplication {
 
 	public static void main(String[] args) {

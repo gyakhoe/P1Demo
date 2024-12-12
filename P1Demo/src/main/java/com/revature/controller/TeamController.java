@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController // Combines @Controller and @ResponseBody
 @RequestMapping("/teams") // This is base URL for this controller
 // TODO add @CorsOrigin annotation to allow HTTP from anywhere
@@ -29,6 +31,12 @@ public class TeamController {
 
         // Helps use build  HTTP Response with OK status with team.
         return ResponseEntity.ok(insertedTeam);
+    }
+
+    // Select all team
+    @GetMapping()
+    public ResponseEntity<List<Team>> getAllTeams() {
+        return ResponseEntity.ok(teamService.getAllTeams());
     }
 
 
