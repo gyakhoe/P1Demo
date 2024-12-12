@@ -13,7 +13,21 @@ public class User {
     private int userId;
 
     @Column(nullable = false) // Setting the column must have value for name
-    private String name;
+    private String username;
+    @Column(nullable = false)
+    private String password;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", team=" + team +
+                '}';
+    }
+
     @Column(nullable = false) // Setting the column must have value for role
     private String role = "player"; // Every user will be player by default
 
@@ -33,13 +47,13 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String name, String role, Team team) {
+    public User(int userId, String username, String password, String role, Team team) {
         this.userId = userId;
-        this.name = name;
+        this.username = username;
+        this.password = password;
         this.role = role;
         this.team = team;
     }
-
     public int getUserId() {
         return userId;
     }
@@ -48,12 +62,21 @@ public class User {
         this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getRole() {
@@ -72,13 +95,4 @@ public class User {
         this.team = team;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", role='" + role + '\'' +
-                ", team=" + team +
-                '}';
-    }
 }
