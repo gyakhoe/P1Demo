@@ -1,5 +1,6 @@
 package com.revature.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +27,7 @@ public class Team {
     *   CascadeType.ALL - any changes to a team record will affect dependent records
      */
     @OneToMany(mappedBy = "team", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<User> users;
 
 

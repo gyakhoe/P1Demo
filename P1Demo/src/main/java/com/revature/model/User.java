@@ -16,18 +16,6 @@ public class User {
     private String username;
     @Column(nullable = false)
     private String password;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", team=" + team +
-                '}';
-    }
-
     @Column(nullable = false) // Setting the column must have value for role
     private String role = "player"; // Every user will be player by default
 
@@ -43,7 +31,6 @@ public class User {
     @JoinColumn(name = "teamId") // This links our FK to PK in team (teamId)
     private Team team;
 
-
     public User() {
     }
 
@@ -54,6 +41,7 @@ public class User {
         this.role = role;
         this.team = team;
     }
+
     public int getUserId() {
         return userId;
     }
@@ -69,7 +57,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
 
     public String getPassword() {
         return password;
@@ -95,4 +82,14 @@ public class User {
         this.team = team;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", team=" + team +
+                '}';
+    }
 }
