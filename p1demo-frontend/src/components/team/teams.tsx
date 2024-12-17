@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 // interface  to model team object
 interface Team {
@@ -8,6 +9,8 @@ interface Team {
     teamName: String,
     teamLocation: String,
 }
+
+
 
 function Teams() {
 
@@ -32,8 +35,16 @@ function Teams() {
         console.log(response.data);
     }
 
+    // hypothetical DELETE team method, to show how to extract ID
+    const deleteTeam = (teamId: Number) => {
+        alert("Team " + teamId + " is deleted");
+    }
+
+
+    const navigate = useNavigate();
     return (
         <Container>
+            <Button className="btn-info" onClick={() => navigate("/")}> Back </Button>
             <h3> Teams </h3>
             <Table>
                 <thead>
@@ -53,13 +64,14 @@ function Teams() {
                             <td>{team.teamLocation}</td>
                             <td>{index}</td>
                             <td>
-                                <Button className="btn btn-danger"> Delete </Button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-        </Container>
+                                <Button className="btn btn-danger" onClick={() => deleteTeam(team.teamId)}> Delete </Button>
+                            </td >
+                        </tr >
+                    ))
+                    }
+                </tbody >
+            </Table >
+        </Container >
     );
 }
 
