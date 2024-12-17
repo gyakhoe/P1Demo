@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css' // Need this for bootstrap, used on ap
 import Login from './components/account/login'
 import Register from './components/account/register'
 import Teams from './components/team/teams'
+import Users from './components/user/users'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path='/' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/teams' element={<Teams />} />
+          <Route path='/users' element={<Users />} />
 
         </Routes>
       </BrowserRouter >

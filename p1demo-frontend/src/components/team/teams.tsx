@@ -58,7 +58,7 @@ function Teams() {
                 </thead>
                 <tbody>
                     {teams.map((team, index) => (
-                        <tr>
+                        <tr >
                             <td>{team.teamId}</td>
                             <td>{team.teamName}</td>
                             <td>{team.teamLocation}</td>
