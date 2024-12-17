@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController // Combines @Controller and @ResponseBody
 @RequestMapping("/teams") // This is base URL for this controller
-// TODO add @CorsOrigin annotation to allow HTTP from anywhere
+@CrossOrigin
 public class TeamController {
 
     // @Autowired shouldn't do field injection is bad, mocking is hard, break encapsulation

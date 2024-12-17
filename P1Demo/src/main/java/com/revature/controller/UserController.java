@@ -2,14 +2,17 @@ package com.revature.controller;
 
 import com.revature.model.User;
 import com.revature.model.dto.IncomingUserDTO;
+import com.revature.model.dto.OutgoingUserDTO;
 import com.revature.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController // Combines @Controller, and @ResponseBody
 @RequestMapping("/users") // All request after /users will be sent to this controller.
-// TODO : Add @CrossOrigin to allow request from anywhere
+@CrossOrigin()
 public class UserController {
 
     private UserService userService;
@@ -34,8 +37,14 @@ public class UserController {
         );
     }
 
+    @GetMapping
+    public ResponseEntity<List<OutgoingUserDTO>> getAllUsers() {
+        return ResponseEntity.ok().body(userService.getAllUsers());
+    }
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> exceptionHandler(IllegalArgumentException e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
+
 }

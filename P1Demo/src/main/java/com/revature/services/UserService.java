@@ -3,11 +3,14 @@ package com.revature.services;
 import com.revature.model.Team;
 import com.revature.model.User;
 import com.revature.model.dto.IncomingUserDTO;
+import com.revature.model.dto.OutgoingUserDTO;
 import com.revature.repository.TeamRepository;
 import com.revature.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -64,5 +67,18 @@ public class UserService {
 
         user.setPassword(newPassword);
         return   userRepository.save(user);
+    }
+
+    //get all user
+    public List<OutgoingUserDTO> getAllUsers() {
+          List<User>  users=  userRepository.findAll();
+        return users.stream().map(user -> {
+           OutgoingUserDTO outDTO = new OutgoingUserDTO();
+           outDTO.setUserId(user.getUserId());
+           outDTO.setUsername(user.getUsername());
+           outDTO.setRole(user.getRole());
+           outDTO.setTeam(user.getTeam());
+            return outDTO;
+        }).toList();
     }
 }
