@@ -22,7 +22,7 @@ function Users() {
     // Function to get all users;
     async function getAllUser() {
         try {
-            const response = await axios.get("http://localhost:4444/users");
+            const response = await axios.get("http://localhost:4444/users", { withCredentials: true });
             console.log(response.data);
             setUsers(response.data);
         } catch (error) {

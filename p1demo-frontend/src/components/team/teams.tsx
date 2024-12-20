@@ -28,7 +28,7 @@ function Teams() {
     const getAllTeams = async () => {
 
         // axios get request
-        const response = await axios.get("http://localhost:4444/teams")
+        const response = await axios.get("http://localhost:4444/teams", { withCredentials: true })
 
         // populate state object;
         setTeams(response.data);

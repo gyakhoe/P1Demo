@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -34,8 +35,28 @@ function Login() {
 
     const navigate = useNavigate();
 
-    function login() {
+    async function login() {
+
+        // Navigate to /teams if the user is player, and /users if the user is a manager
+
         navigate("/users");
+    }
+
+    const loginTwo = () => {
+        console.log(userCredential);
+        // TODO make sure the username and password are present before proceeding 
+        axios.post("http://localhost:4444/auth", userCredential, { withCredentials: true })
+            .then((response) => {
+                console.log(response.data);
+                if (response.data.role = "manager") {
+                    navigate('/users')
+                } else {
+                    navigate('/teams');
+                }
+            }).catch((error) => {
+                console.log("Error while logging in : ", error);
+                alert(error.response.data["message"])
+            })
     }
 
 
@@ -69,7 +90,7 @@ function Login() {
                                 />
                             </div>
                             <div className="d-flex gap-1">
-                                <Button onClick={login}>Login</Button>
+                                <Button onClick={loginTwo}>Login</Button>
                                 <Button onClick={() => navigate("/register")}>Register</Button>
                             </div>
                         </Card.Body>
